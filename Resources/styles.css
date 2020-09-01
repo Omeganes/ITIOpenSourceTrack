@@ -1,0 +1,22 @@
+body{
+    background-image: url('https://i2.wp.com/files.123freevectors.com/wp-content/original/131382-abstract-grey-and-white-polygon-pattern-background-illustration.jpg?w=800&q=95');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+#card .card{
+    position: relative;
+    widows: 20rem;
+    height: 40rem;
+}
+
+#card .card img{
+    height:20rem;
+}
+
+#card .card-body .card-footer{
+    position: absolute;
+    bottom: 0.5rem; 
+    right: 0.5rem;
+}
