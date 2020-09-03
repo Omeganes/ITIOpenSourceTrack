@@ -7,8 +7,8 @@ body{
 
 #card .card{
     position: relative;
-    widows: 20rem;
-    height: 40rem;
+    width: 20rem;
+    height: 42rem;
 }
 
 #card .card img{
