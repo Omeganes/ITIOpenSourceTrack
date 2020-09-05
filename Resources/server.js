@@ -37,6 +37,9 @@ xhr.onreadystatechange = function() {
                                 <small class="text-muted">${product.Price} ${product.CurrencyCode}</small>
                             </h6>
                         </div>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+                        Feedback
+                        </button>
                     </div>
                 </div>
             </div>
@@ -76,6 +79,12 @@ xhr.onreadystatechange = function() {
             let smallEl3 = document.createElement('small');
             smallEl3.className = 'text-muted';
             smallEl3.innerHTML = product.Price + ' ' + product.CurrencyCode;
+            let rateBtn = document.createElement('button');
+            rateBtn.type = 'button';
+            rateBtn.className = 'btn btn-primary';
+            rateBtn.setAttribute('data-toggle', 'modal');
+            rateBtn.setAttribute('data-target',"#modal");
+            rateBtn.innerHTML = "Feedback";
             priceText.appendChild(smallEl3);
             cardFooterEl.appendChild(quantityText);
             cardFooterEl.appendChild(priceText);
@@ -84,13 +93,38 @@ xhr.onreadystatechange = function() {
             cardBodyElement.appendChild(h5El);
             cardBodyElement.appendChild(smallEl);
             cardBodyElement.appendChild(cardFooterEl);
+            cardBodyElement.appendChild(rateBtn);
             cardElement.appendChild(imgElement);
             cardElement.appendChild(cardBodyElement);
             cardDiv.appendChild(cardElement);
 
             cardDeckElement.appendChild(cardDiv);
         }    
+        
     }
 };
-
 xhr.send();
+
+
+let form = document.forms.feedback;
+form.addEventListener('submit', function(){
+    event.preventDefault();
+    const formData = {
+        "rate": form.rate.value,
+        "message": form.message.value
+    };
+    let formxhr = new XMLHttpRequest();
+    console.log(formData);
+    formxhr.open("POST", 'https://api.a7medhussien.com/api/feedback');
+    formxhr.setRequestHeader("Content-Type", "application/json");
+    formxhr.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            let json = JSON.parse(formxhr.responseText);
+            console.log(json);
+        }
+    };
+    formxhr.send(JSON.stringify(formData));
+    let msg = document.createElement('h6');
+    msg.innerHTML = "Your Feedback has been sent!";
+    document.getElementById('form-footer').prepend(msg);
+});
