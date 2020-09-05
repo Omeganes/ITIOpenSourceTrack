@@ -114,17 +114,17 @@ form.addEventListener('submit', function(){
         "message": form.message.value
     };
     let formxhr = new XMLHttpRequest();
-    console.log(formData);
     formxhr.open("POST", 'https://api.a7medhussien.com/api/feedback');
     formxhr.setRequestHeader("Content-Type", "application/json");
     formxhr.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
+        if(this.readyState == 4 && this.status == 422){
             let json = JSON.parse(formxhr.responseText);
-            console.log(json);
+            document.getElementById('feedback-alert').innerHTML = json.errors.message;
+        }
+        else if(this.readyState == 4 && this.status == 200){
+            document.getElementById('feedback-alert').innerHTML = "Thanks for sending us your feedback!";
         }
     };
     formxhr.send(JSON.stringify(formData));
-    let msg = document.createElement('h6');
-    msg.innerHTML = "Your Feedback has been sent!";
-    document.getElementById('form-footer').prepend(msg);
+    console.log(formxhr);
 });
