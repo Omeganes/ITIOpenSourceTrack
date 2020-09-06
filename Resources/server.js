@@ -79,12 +79,12 @@ xhr.onreadystatechange = function() {
             let smallEl3 = document.createElement('small');
             smallEl3.className = 'text-muted';
             smallEl3.innerHTML = product.Price + ' ' + product.CurrencyCode;
-            let rateBtn = document.createElement('button');
-            rateBtn.type = 'button';
-            rateBtn.className = 'btn btn-primary';
-            rateBtn.setAttribute('data-toggle', 'modal');
-            rateBtn.setAttribute('data-target',"#modal");
-            rateBtn.innerHTML = "Feedback";
+            // let rateBtn = document.createElement('button');
+            // rateBtn.type = 'button';
+            // rateBtn.className = 'btn btn-primary';
+            // rateBtn.setAttribute('data-toggle', 'modal');
+            // rateBtn.setAttribute('data-target',"#modal");
+            // rateBtn.innerHTML = "Feedback";
             priceText.appendChild(smallEl3);
             cardFooterEl.appendChild(quantityText);
             cardFooterEl.appendChild(priceText);
@@ -93,7 +93,7 @@ xhr.onreadystatechange = function() {
             cardBodyElement.appendChild(h5El);
             cardBodyElement.appendChild(smallEl);
             cardBodyElement.appendChild(cardFooterEl);
-            cardBodyElement.appendChild(rateBtn);
+            // cardBodyElement.appendChild(rateBtn);
             cardElement.appendChild(imgElement);
             cardElement.appendChild(cardBodyElement);
             cardDiv.appendChild(cardElement);
